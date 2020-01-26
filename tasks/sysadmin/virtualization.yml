@@ -69,3 +69,18 @@
   become: true
   tags:
     - vmware
+
+- name: Citrix client
+  block:
+
+    - name: Find out whether Citrix client is installed
+      stat: path=/opt/Citrix/ICAClient/selfservice
+      register: citrix_installed
+
+    - name: Install Citrix Receiver
+      apt: deb={{ citrix_download_url }}
+      when: not citrix_installed.stat.exists or force_upgrade == 'yes'
+      become: true
+
+  tags:
+    - citrix

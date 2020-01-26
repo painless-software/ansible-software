@@ -111,3 +111,11 @@ vmware_baseurl: 'https://download3.vmware.com/software/player/file'
 vmware_installer: "/tmp/{{ vmware_package }}"
 vmware_install_cmd: "{{ vmware_installer }} --console --eulas-agreed --required"
 vmware_uninstall_cmd: "{{ vmware_installer} --uninstall-product=vmware-player --required"
+
+# from: https://www.citrix.com/downloads/citrix-receiver/linux/receiver-for-linux-latest.html
+# see also: https://help.ubuntu.com/community/CitrixICAClientHowTo
+citrix_version: '13.10.0.20'
+citrix_package: "icaclient_{{ citrix_version }}_amd64.deb"
+citrix_baseurl: 'https://downloads.citrix.com/14822'
+citrix_accepthash: '1534069820_1eff0bc56556cb96ab7a6661fd919a6e'
+citrix_download_url: "{{ citrix_baseurl }}/{{ citrix_package }}?__gda__={{ citrix_accepthash }}"
